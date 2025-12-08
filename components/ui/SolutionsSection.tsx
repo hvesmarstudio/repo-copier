@@ -64,13 +64,15 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
     // Wait for layout to calculate proper widths
     const initScroll = () => {
       // Card width calculation based on screen size
+      // On mobile, account for section padding (px-6 = 24px on each side)
       const isSmallMobile = window.innerWidth < 640;
       const isMobile = window.innerWidth < 768;
       const isLargeScreen = window.innerWidth >= 1024;
+      const sectionPadding = isMobile ? 48 : 0; // 24px * 2 (left + right) for mobile
       const cardWidth = isSmallMobile 
-        ? window.innerWidth 
+        ? window.innerWidth - sectionPadding
         : isMobile 
-        ? window.innerWidth * 0.9 
+        ? window.innerWidth - sectionPadding
         : isLargeScreen 
         ? window.innerWidth * 0.75 
         : window.innerWidth * 0.85;
@@ -105,10 +107,11 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
       const isSmallMobile = window.innerWidth < 640;
       const isMobile = window.innerWidth < 768;
       const isLargeScreen = window.innerWidth >= 1024;
+      const sectionPadding = (isSmallMobile || isMobile) ? 48 : 0; // 24px * 2 for mobile
       const cardWidth = isSmallMobile 
-        ? window.innerWidth 
+        ? window.innerWidth - sectionPadding
         : isMobile 
-        ? window.innerWidth * 0.9 
+        ? window.innerWidth - sectionPadding
         : isLargeScreen 
         ? window.innerWidth * 0.75 
         : window.innerWidth * 0.85;
@@ -150,10 +153,11 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
         const isSmallMobile = window.innerWidth < 640;
         const isMobile = window.innerWidth < 768;
         const isLargeScreen = window.innerWidth >= 1024;
+        const sectionPadding = (isSmallMobile || isMobile) ? 48 : 0; // 24px * 2 for mobile
         const cardWidth = isSmallMobile 
-          ? window.innerWidth 
+          ? window.innerWidth - sectionPadding
           : isMobile 
-          ? window.innerWidth * 0.9 
+          ? window.innerWidth - sectionPadding
           : isLargeScreen 
           ? window.innerWidth * 0.75 
           : window.innerWidth * 0.85;
@@ -224,10 +228,11 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
     const isSmallMobile = window.innerWidth < 640;
     const isMobile = window.innerWidth < 768;
     const isLargeScreen = window.innerWidth >= 1024;
+    const sectionPadding = (isSmallMobile || isMobile) ? 48 : 0; // 24px * 2 for mobile
     const cardWidth = isSmallMobile 
-      ? window.innerWidth 
+      ? window.innerWidth - sectionPadding
       : isMobile 
-      ? window.innerWidth * 0.9 
+      ? window.innerWidth - sectionPadding
       : isLargeScreen 
       ? window.innerWidth * 0.75 
       : window.innerWidth * 0.85;
@@ -254,10 +259,11 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
     const isSmallMobile = window.innerWidth < 640;
     const isMobile = window.innerWidth < 768;
     const isLargeScreen = window.innerWidth >= 1024;
+    const sectionPadding = (isSmallMobile || isMobile) ? 48 : 0; // 24px * 2 for mobile
     const cardWidth = isSmallMobile 
-      ? window.innerWidth 
+      ? window.innerWidth - sectionPadding
       : isMobile 
-      ? window.innerWidth * 0.9 
+      ? window.innerWidth - sectionPadding
       : isLargeScreen 
       ? window.innerWidth * 0.75 
       : window.innerWidth * 0.85;
@@ -593,7 +599,15 @@ const CardWithPeekEffect: React.FC<{
       const distanceFromCenter = Math.abs(cardCenter - viewportCenter);
       
       // Card width calculation based on screen size
-      const cardWidth = isLargeScreen ? window.innerWidth * 0.75 : window.innerWidth * 0.85;
+      // On mobile, account for section padding
+      const sectionPadding = (isSmallMobile || isMobile) ? 48 : 0;
+      const cardWidth = isSmallMobile 
+        ? window.innerWidth - sectionPadding
+        : isMobile 
+        ? window.innerWidth - sectionPadding
+        : isLargeScreen 
+        ? window.innerWidth * 0.75 
+        : window.innerWidth * 0.85;
       
       // Use a threshold based on card width to determine if card is centered
       // Center card threshold: within 10% of card width from viewport center
@@ -633,7 +647,7 @@ const CardWithPeekEffect: React.FC<{
   const isLargeScreen = typeof window !== 'undefined' && window.innerWidth >= 1024;
   
   // Card width based on screen size
-  // On mobile, cards should be full width within the section container (accounting for section padding: px-6 = 24px on each side)
+  // On mobile, cards should be full width within the section container (accounting for section padding: px-6 = 24px on each side = 48px total)
   // On desktop, use viewport-based widths for peek effect
   const cardWidth = isSmallMobile || isMobile ? '100%' : isLargeScreen ? '75vw' : '85vw';
   
@@ -657,21 +671,23 @@ const CardWithPeekEffect: React.FC<{
       <div className="bg-white rounded-2xl p-4 md:p-6 lg:p-8 border border-gray-200 shadow-sm h-full w-full max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 h-full">
           {/* Text Content */}
-          <div className="flex flex-col justify-center space-y-4 md:space-y-6 lg:space-y-8">
-            {/* Number and Title */}
-            <div className="space-y-3 md:space-y-4">
-              <div className="flex items-baseline justify-between">
-                <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-200">
-                  {service.number}
-                </span>
-              </div>
-              <h3 className="text-lg md:text-xl lg:text-2xl font-bold leading-tight text-black">
+          <div className="flex flex-col justify-center space-y-4 md:space-y-5 lg:space-y-6">
+            {/* Number */}
+            <div>
+              <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-200 leading-none">
+                {service.number}
+              </span>
+            </div>
+
+            {/* Title */}
+            <div>
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight text-black">
                 {service.title}
               </h3>
             </div>
 
             {/* Tagline Badge */}
-            <div className="inline-block px-2.5 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-100 border border-gray-200 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black subhead w-fit">
+            <div className="inline-block px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-xs font-bold uppercase tracking-widest text-black subhead w-fit">
               {service.tagline}
             </div>
 
@@ -681,14 +697,14 @@ const CardWithPeekEffect: React.FC<{
             </p>
 
             {/* Deliverables List */}
-            <div className="space-y-2 md:space-y-3">
+            <div className="space-y-2.5 md:space-y-3">
               {service.deliverables.slice(0, 4).map((d, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-medium text-gray-600"
+                  className="flex items-center gap-3 text-sm md:text-base font-medium text-gray-600"
                 >
-                  <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gray-100 flex items-center justify-center text-black shrink-0">
-                    <Check size={10} className="md:w-3 md:h-3" />
+                  <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-black shrink-0">
+                    <Check size={12} />
                   </div>
                   {d}
                 </div>
@@ -696,8 +712,8 @@ const CardWithPeekEffect: React.FC<{
             </div>
 
             {/* Outcome & CTA */}
-            <div className="pt-4 space-y-4">
-              <div className="text-xs md:text-sm text-gray-400 font-bold uppercase flex items-center gap-2">
+            <div className="pt-2 md:pt-4 space-y-4">
+              <div className="text-xs md:text-sm text-gray-400 font-bold uppercase">
                 Outcome: <span className="text-black">{service.outcome}</span>
               </div>
               <Button 

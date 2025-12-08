@@ -429,8 +429,7 @@ const App: React.FC = () => {
           <ScrollReveal>
             <div className="mb-8 md:mb-12 lg:mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
                <div>
-                 <span className="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-2 md:mb-3 subhead">Social Proof</span>
-                 <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">Intelligence at Work</h3>
+                 <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-left">Intelligence at Work</h2>
                </div>
                <p className="text-base md:text-lg text-gray-500 max-w-xs text-right hidden md:block">Measurable impact from systems designed for intelligence.</p>
             </div>

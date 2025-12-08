@@ -668,36 +668,36 @@ const CardWithPeekEffect: React.FC<{
         pointerEvents: isSmallMobile ? 'auto' : (opacity < 0.6 ? 'none' : 'auto'),
       }}
     >
-      <div className="bg-white rounded-2xl p-4 md:p-6 lg:p-8 border border-gray-200 shadow-sm h-full w-full max-w-[1400px] mx-auto">
+      <div className="bg-white rounded-2xl p-5 md:p-6 lg:p-8 border border-gray-200 shadow-sm h-full w-full max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 h-full">
           {/* Text Content */}
-          <div className="flex flex-col justify-center space-y-4 md:space-y-5 lg:space-y-6">
+          <div className="flex flex-col justify-center">
             {/* Number */}
-            <div>
-              <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-200 leading-none">
+            <div className="mb-3 md:mb-4">
+              <span className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-200 leading-none">
                 {service.number}
               </span>
             </div>
 
             {/* Title */}
-            <div>
+            <div className="mb-3 md:mb-4">
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight text-black">
                 {service.title}
               </h3>
             </div>
 
             {/* Tagline Badge */}
-            <div className="inline-block px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-xs font-bold uppercase tracking-widest text-black subhead w-fit">
+            <div className="inline-block px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-xs font-bold uppercase tracking-widest text-black subhead w-fit mb-3 md:mb-4">
               {service.tagline}
             </div>
 
             {/* Description */}
-            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-5">
               {service.description}
             </p>
 
             {/* Deliverables List */}
-            <div className="space-y-2.5 md:space-y-3">
+            <div className="space-y-2.5 md:space-y-3 mb-4 md:mb-5">
               {service.deliverables.slice(0, 4).map((d, i) => (
                 <div
                   key={i}

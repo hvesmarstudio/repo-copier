@@ -94,11 +94,11 @@ export const HeroInteractiveBackground: React.FC = () => {
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
       
-      // Draw Mouse Spotlight (Glow) with Accent Blue
+      // Draw Mouse Spotlight (Glow) with Black/Gray
       if (mouse.x > 0) {
         const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 350);
-        gradient.addColorStop(0, 'rgba(10, 77, 211, 0.08)'); // #0A4DD3 with opacity
-        gradient.addColorStop(1, 'rgba(10, 77, 211, 0)');
+        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.08)'); // Black with opacity
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
       }
@@ -155,9 +155,9 @@ export const HeroInteractiveBackground: React.FC = () => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         
-        // Use Accent color for particles near mouse, otherwise dark
+        // Use darker color for particles near mouse, otherwise light gray
         if (dist < mouseDistance) {
-           ctx.fillStyle = `rgba(10, 77, 211, ${0.4 - (dist / mouseDistance) * 0.2})`; // #0A4DD3
+           ctx.fillStyle = `rgba(0, 0, 0, ${0.4 - (dist / mouseDistance) * 0.2})`; // Black
         } else {
            ctx.fillStyle = 'rgba(26, 26, 26, 0.2)'; // Dark charcoal
         }
@@ -180,12 +180,12 @@ export const HeroInteractiveBackground: React.FC = () => {
             }
         }
         
-        // Connect to Mouse with Accent Color
+        // Connect to Mouse with Black
         if (dist < mouseDistance) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(10, 77, 211, ${0.3 - (dist / mouseDistance) * 0.3})`; // #0A4DD3
+            ctx.strokeStyle = `rgba(0, 0, 0, ${0.3 - (dist / mouseDistance) * 0.3})`; // Black
             ctx.lineWidth = 1;
             ctx.stroke();
         }

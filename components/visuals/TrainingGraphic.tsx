@@ -32,12 +32,12 @@ export const TrainingGraphic: React.FC = () => {
   }, [step]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-full w-full max-h-[400px]">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-full w-full max-h-[400px] md:max-h-[450px] lg:max-h-[500px]">
       {/* Chat Simulator */}
-      <div className="md:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col overflow-hidden">
+      <div className="md:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col overflow-hidden min-h-0">
         <div className="p-3 border-b border-gray-100 flex items-center justify-between bg-gray-50">
            <div className="flex items-center gap-2">
-             <div className="w-2 h-2 rounded-full bg-[#0A4DD3]"></div>
+             <div className="w-2 h-2 rounded-full bg-black"></div>
              <span className="text-xs font-bold text-gray-600">Training Simulator v2.0</span>
            </div>
         </div>
@@ -56,7 +56,7 @@ export const TrainingGraphic: React.FC = () => {
               )}
               
               {msg.role === 'system' ? (
-                 <div className="bg-blue-50 text-[#0A4DD3] text-xs px-3 py-1 rounded-full flex items-center gap-1 font-bold border border-blue-100">
+                 <div className="bg-gray-100 text-black text-xs px-3 py-1 rounded-full flex items-center gap-1 font-bold border border-gray-200">
                     <CheckCircle size={10} /> {msg.text}
                  </div>
               ) : (
@@ -82,23 +82,23 @@ export const TrainingGraphic: React.FC = () => {
            <div className="relative flex items-center justify-center py-4">
               <svg className="w-24 h-24 transform -rotate-90">
                 <circle cx="48" cy="48" r="40" stroke="#f3f4f6" strokeWidth="8" fill="none" />
-                <circle cx="48" cy="48" r="40" stroke="#0A4DD3" strokeWidth="8" fill="none" strokeDasharray="251.2" strokeDashoffset={251.2 - (251.2 * 0.75)} className="transition-all duration-1000 ease-out" />
+                <circle cx="48" cy="48" r="40" stroke="#000000" strokeWidth="8" fill="none" strokeDasharray="251.2" strokeDashoffset={251.2 - (251.2 * 0.75)} className="transition-all duration-1000 ease-out" />
               </svg>
               <div className="absolute font-bold text-xl">75%</div>
            </div>
-           <div className="text-center text-xs text-[#0A4DD3] font-medium">+12% this week</div>
+           <div className="text-center text-xs text-black font-medium">+12% this week</div>
         </div>
 
         <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm flex-1 flex flex-col justify-center gap-3">
            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-50 text-[#0A4DD3] rounded-lg"><BarChart3 size={16} /></div>
+              <div className="p-2 bg-gray-100 text-black rounded-lg"><BarChart3 size={16} /></div>
               <div>
                 <div className="text-xs text-gray-400">Productivity</div>
                 <div className="font-bold">2.4x Gain</div>
               </div>
            </div>
            <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
-             <div className="h-full bg-[#0A4DD3] w-[70%]"></div>
+             <div className="h-full bg-black w-[70%]"></div>
            </div>
         </div>
       </div>

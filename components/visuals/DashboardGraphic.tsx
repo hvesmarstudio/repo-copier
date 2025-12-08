@@ -35,10 +35,10 @@ export const DashboardGraphic: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 w-full h-full overflow-hidden flex flex-col gap-6 relative">
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 md:p-6 w-full h-full overflow-visible flex flex-col gap-4 md:gap-6 relative max-h-[500px]">
       <div className="flex items-center justify-between border-b border-gray-100 pb-4">
         <div className="flex gap-2 items-center">
-           <div className="w-3 h-3 rounded-full bg-[#0A4DD3]" />
+           <div className="w-3 h-3 rounded-full bg-black" />
            <div className="w-3 h-3 rounded-full bg-gray-300" />
            <div className="w-3 h-3 rounded-full bg-gray-300" />
         </div>
@@ -66,20 +66,20 @@ export const DashboardGraphic: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex-1 min-h-[150px]">
+      <div className="flex-1 min-h-[120px] md:min-h-[150px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={chartData}>
             <defs>
               <linearGradient id="colorActive" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#0A4DD3" stopOpacity={0.1}/>
-                <stop offset="95%" stopColor="#0A4DD3" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#000000" stopOpacity={0.1}/>
+                <stop offset="95%" stopColor="#000000" stopOpacity={0}/>
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
             <XAxis dataKey="name" hide />
             <YAxis hide />
             <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
-            <Area type="monotone" dataKey="active" stroke="#0A4DD3" strokeWidth={2} fillOpacity={1} fill="url(#colorActive)" />
+            <Area type="monotone" dataKey="active" stroke="#000000" strokeWidth={2} fillOpacity={1} fill="url(#colorActive)" />
             <Area type="monotone" dataKey="processed" stroke="#9CA3AF" strokeWidth={2} strokeDasharray="4 4" fill="none" />
           </AreaChart>
         </ResponsiveContainer>
@@ -89,10 +89,10 @@ export const DashboardGraphic: React.FC = () => {
         {[0, 1, 2].map((i) => (
           <div key={i} className={`flex items-center justify-between p-3 rounded-lg transition-all duration-500 ${activeTask === i ? 'bg-black text-white' : 'bg-gray-50 text-gray-400'}`}>
             <div className="flex items-center gap-3">
-              <div className={`w-2 h-2 rounded-full ${activeTask === i ? 'bg-[#0A4DD3] animate-pulse' : 'bg-gray-300'}`} />
+              <div className={`w-2 h-2 rounded-full ${activeTask === i ? 'bg-white animate-pulse' : 'bg-gray-300'}`} />
               <span className="text-xs font-medium">Auto-scheduling client follow-up #{1024 + i}</span>
             </div>
-            {activeTask === i && <CheckCircle size={14} className="animate-bounce text-[#0A4DD3]" />}
+            {activeTask === i && <CheckCircle size={14} className="animate-bounce text-white" />}
           </div>
         ))}
       </div>

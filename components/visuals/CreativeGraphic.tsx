@@ -18,7 +18,7 @@ export const CreativeGraphic: React.FC = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-4 h-full w-full p-4">
+    <div className="grid grid-cols-2 gap-4 h-full w-full p-2 md:p-4 max-h-[500px]">
        {/* Card 1: Text Gen */}
        <div className="col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-gray-200 relative overflow-hidden group hover:shadow-lg transition-all duration-300">
          <div className="absolute top-4 right-4 text-xs font-mono text-gray-400 bg-gray-50 px-2 py-1 rounded">GENERATOR</div>
@@ -43,14 +43,14 @@ export const CreativeGraphic: React.FC = () => {
        <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200 flex flex-col justify-between group">
           <div className="flex justify-between items-start">
              <FileText size={20} />
-             <div className="w-2 h-2 bg-[#0A4DD3] rounded-full animate-pulse"></div>
+             <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
           </div>
           <div className="space-y-2 mt-4">
              <div className="h-1 w-full bg-gray-200 rounded overflow-hidden">
                 <div className="h-full bg-black w-[70%] group-hover:w-[90%] transition-all duration-700"></div>
              </div>
              <div className="h-1 w-2/3 bg-gray-200 rounded overflow-hidden">
-                <div className="h-full bg-[#0A4DD3] w-[40%] group-hover:w-[60%] transition-all duration-700 delay-100"></div>
+                <div className="h-full bg-black w-[40%] group-hover:w-[60%] transition-all duration-700 delay-100"></div>
              </div>
           </div>
        </div>

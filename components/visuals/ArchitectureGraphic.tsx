@@ -3,8 +3,8 @@ import { Database, Cpu, Layout, Layers } from 'lucide-react';
 
 export const ArchitectureGraphic: React.FC = () => {
   return (
-    <div className="w-full h-[400px] flex items-center justify-center perspective-1000 group">
-      <div className="relative w-64 h-64 preserve-3d">
+    <div className="w-full h-full min-h-[300px] md:min-h-[350px] lg:min-h-[400px] flex items-center justify-center perspective-1000 group">
+      <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 preserve-3d">
         {/* Layer 1: Data */}
         <div className="absolute inset-0 bg-white rounded-2xl shadow-xl border border-gray-200 flex items-center justify-center isometric-layer isometric-layer-1 opacity-90">
            <div className="flex flex-col items-center gap-2">
@@ -12,7 +12,7 @@ export const ArchitectureGraphic: React.FC = () => {
              <span className="text-xs font-mono font-bold text-gray-500">DATA LAYER</span>
            </div>
            {/* Connecting dots */}
-           <div className="absolute -top-4 -right-4 w-2 h-2 bg-[#0A4DD3] rounded-full animate-pulse"></div>
+           <div className="absolute -top-4 -right-4 w-2 h-2 bg-black rounded-full animate-pulse"></div>
         </div>
 
         {/* Layer 2: Processing */}

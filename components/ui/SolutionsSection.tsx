@@ -31,6 +31,7 @@ interface SolutionsSectionProps {
 export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<number | null>(null);
   const isUserScrollingRef = useRef(false);
@@ -39,6 +40,16 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
   // Check for reduced motion preference
   const prefersReducedMotion = typeof window !== 'undefined' && 
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Track mobile state for responsive width
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Duplicate services for infinite loop (3 sets: before, current, after)
   const duplicatedServices = [...services, ...services, ...services];
@@ -428,7 +439,7 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
       {/* Section Header */}
       <div className="w-full mb-8 md:mb-12 lg:mb-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">Our Solutions</h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight">Our Solutions</h2>
           <div className="flex items-center gap-4 md:gap-6">
             {/* Progress Indicator */}
             <div className="flex items-center gap-2 text-sm md:text-base text-gray-400">
@@ -442,15 +453,15 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
 
       {/* Horizontal Scroll Carousel */}
       <div 
-        className="relative overflow-visible"
-        style={{
+        className={`relative overflow-visible ${isMobile ? 'w-full' : ''}`}
+        style={!isMobile ? {
           width: '100vw',
           position: 'relative',
           left: '50%',
           right: '50%',
           marginLeft: '-50vw',
           marginRight: '-50vw',
-        }}
+        } : {}}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -467,13 +478,13 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ services }) 
             scrollBehavior: prefersReducedMotion ? 'auto' : 'smooth',
             paddingLeft: typeof window !== 'undefined' 
               ? (window.innerWidth < 640 ? '0px' 
-                : window.innerWidth < 768 ? '5vw' 
+                : window.innerWidth < 768 ? '0px' 
                 : window.innerWidth >= 1024 ? '12.5vw' 
                 : '7.5vw')
               : '7.5vw',
             paddingRight: typeof window !== 'undefined' 
               ? (window.innerWidth < 640 ? '0px' 
-                : window.innerWidth < 768 ? '5vw' 
+                : window.innerWidth < 768 ? '0px' 
                 : window.innerWidth >= 1024 ? '12.5vw' 
                 : '7.5vw')
               : '7.5vw',
@@ -622,7 +633,9 @@ const CardWithPeekEffect: React.FC<{
   const isLargeScreen = typeof window !== 'undefined' && window.innerWidth >= 1024;
   
   // Card width based on screen size
-  const cardWidth = isSmallMobile ? '100vw' : isMobile ? '90vw' : isLargeScreen ? '75vw' : '85vw';
+  // On mobile, cards should be full width within the section container (accounting for section padding: px-6 = 24px on each side)
+  // On desktop, use viewport-based widths for peek effect
+  const cardWidth = isSmallMobile || isMobile ? '100%' : isLargeScreen ? '75vw' : '85vw';
   
   return (
     <div
@@ -641,41 +654,41 @@ const CardWithPeekEffect: React.FC<{
         pointerEvents: isSmallMobile ? 'auto' : (opacity < 0.6 ? 'none' : 'auto'),
       }}
     >
-      <div className="bg-white rounded-2xl p-5 md:p-6 lg:p-8 border border-gray-200 shadow-sm h-full w-full max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 h-full">
+      <div className="bg-white rounded-2xl p-4 md:p-6 lg:p-8 border border-gray-200 shadow-sm h-full w-full max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 h-full">
           {/* Text Content */}
-          <div className="flex flex-col justify-center space-y-6 md:space-y-8">
+          <div className="flex flex-col justify-center space-y-4 md:space-y-6 lg:space-y-8">
             {/* Number and Title */}
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               <div className="flex items-baseline justify-between">
-                <span className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-200">
+                <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-200">
                   {service.number}
                 </span>
               </div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-black">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-bold leading-tight text-black">
                 {service.title}
               </h3>
             </div>
 
             {/* Tagline Badge */}
-            <div className="inline-block px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-xs font-bold uppercase tracking-widest text-black subhead w-fit">
+            <div className="inline-block px-2.5 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-100 border border-gray-200 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black subhead w-fit">
               {service.tagline}
             </div>
 
             {/* Description */}
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-700 leading-relaxed">
               {service.description}
             </p>
 
             {/* Deliverables List */}
-            <div className="space-y-3 md:space-y-4">
+            <div className="space-y-2 md:space-y-3">
               {service.deliverables.slice(0, 4).map((d, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 text-sm md:text-base font-medium text-gray-600"
+                  className="flex items-center gap-2 md:gap-3 text-xs md:text-sm font-medium text-gray-600"
                 >
-                  <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-black shrink-0">
-                    <Check size={12} />
+                  <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gray-100 flex items-center justify-center text-black shrink-0">
+                    <Check size={10} className="md:w-3 md:h-3" />
                   </div>
                   {d}
                 </div>
@@ -699,7 +712,7 @@ const CardWithPeekEffect: React.FC<{
           </div>
 
           {/* Graphic Area */}
-          <div className="bg-[#F8F9FA] rounded-2xl border border-gray-100 overflow-hidden relative flex items-center justify-center p-4 md:p-5 lg:p-6 min-h-[300px] md:min-h-[350px] lg:min-h-[400px] shadow-inner">
+          <div className="bg-[#F8F9FA] rounded-2xl border border-gray-100 overflow-hidden relative flex items-center justify-center p-3 md:p-5 lg:p-6 min-h-[250px] md:min-h-[300px] lg:min-h-[350px] shadow-inner">
             <div className="w-full h-full flex items-center justify-center overflow-auto">
               {service.graphic}
             </div>

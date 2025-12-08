@@ -234,7 +234,7 @@ const App: React.FC = () => {
       </div>
 
       {/* Hero Section */}
-      <Section className="min-h-[70vh] md:min-h-[80vh] flex flex-col justify-start pt-20 md:pt-24 lg:pt-28 relative">
+      <Section className="min-h-[75vh] md:min-h-[80vh] flex flex-col justify-start pt-16 md:pt-20 lg:pt-24 relative">
         <div className="max-w-[1400px] mx-auto text-center space-y-6 md:space-y-8 relative z-10 w-full px-6 md:px-12 lg:px-20">
 
             {/* Intelligence Lab Badge */}
@@ -245,7 +245,7 @@ const App: React.FC = () => {
             
             {/* Headline */}
             <div className="space-y-4 md:space-y-6 pt-2 md:pt-3">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight text-black">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[0.95] tracking-tight text-black">
                 Designing intelligence, <br className="hidden md:block" />
                 <span className="text-gray-400">not just installing it.</span>
               </h1>
@@ -295,7 +295,7 @@ const App: React.FC = () => {
           <div className="w-full space-y-12 md:space-y-16">
             <div className="text-center space-y-6 md:space-y-8">
               <span className="text-xs font-bold uppercase tracking-widest text-gray-500 border border-gray-300 px-3 py-1.5 rounded-full subhead">The Paradox</span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight max-w-4xl mx-auto">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight max-w-4xl mx-auto">
                 Most businesses have access to more intelligence than ever before, yet they are
                 <span className="text-gray-400 block mt-2 md:mt-3">less intelligent in how they operate.</span>
               </h2>
@@ -313,8 +313,8 @@ const App: React.FC = () => {
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:translate-x-1 transition-transform">{item.title}</h3>
-                      <p className="text-sm md:text-base text-gray-500 group-hover:translate-x-1 transition-transform delay-75 subhead">{item.subtitle}</p>
+                      <h3 className="text-lg md:text-xl font-bold mb-2 group-hover:translate-x-1 transition-transform">{item.title}</h3>
+                      <p className="text-xs md:text-sm text-gray-500 group-hover:translate-x-1 transition-transform delay-75 subhead">{item.subtitle}</p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -333,7 +333,7 @@ const App: React.FC = () => {
                 <ScrollReveal delay={100}>
                   <div className="space-y-4 md:space-y-6">
                     <span className="text-xs font-bold uppercase tracking-widest text-gray-400 subhead">Who We Are</span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">We're architects of intelligence.</h2>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">We're architects of intelligence.</h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md">
                       Aitoma is an intelligence lab for modern businesses. We don't build AI tools and walk away. We partner with companies to architect intelligent systems into every layer of their operation.
                     </p>
@@ -350,8 +350,8 @@ const App: React.FC = () => {
                       <div className="flex flex-col items-start gap-3 p-5 md:p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-default border border-transparent hover:border-gray-100 group h-full">
                         <div className="w-10 h-10 rounded-full bg-[#EAEAEA] text-black flex items-center justify-center text-sm font-bold shrink-0 group-hover:bg-black group-hover:text-white transition-all duration-300">{i+1}</div>
                         <div>
-                          <h4 className="text-base md:text-lg font-bold group-hover:text-black transition-colors">{p.title}</h4>
-                          <p className="text-sm text-gray-500">{p.desc}</p>
+                          <h4 className="text-sm md:text-base font-bold group-hover:text-black transition-colors">{p.title}</h4>
+                          <p className="text-xs md:text-sm text-gray-500">{p.desc}</p>
                         </div>
                       </div>
                     </ScrollReveal>

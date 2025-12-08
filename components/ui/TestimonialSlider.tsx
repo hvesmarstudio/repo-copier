@@ -95,7 +95,7 @@ export const TestimonialSlider: React.FC<TestimonialSliderProps> = ({ testimonia
                 }`}
                 style={{ pointerEvents: index === currentIndex ? 'auto' : 'none' }}
               >
-                <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-medium leading-relaxed break-words pr-2">
+                <p className="text-sm md:text-base lg:text-lg font-medium leading-relaxed break-words pr-2">
                   "{testimonial.quote}"
                 </p>
               </div>

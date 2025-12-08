@@ -245,7 +245,7 @@ const App: React.FC = () => {
             
             {/* Headline */}
             <div className="space-y-4 md:space-y-6 pt-2 md:pt-3">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[0.95] tracking-tight text-black">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[0.95] tracking-tight text-black">
                 Designing intelligence, <br className="hidden md:block" />
                 <span className="text-gray-400">not just installing it.</span>
               </h1>

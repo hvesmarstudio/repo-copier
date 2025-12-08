@@ -13,6 +13,19 @@ interface HeroServicesGridProps {
   onServiceClick?: (serviceId: string) => void;
 }
 
+// Format title to display on two lines
+const formatTitleTwoLines = (title: string): string => {
+  // Split titles intelligently for two-line display
+  const titleMap: { [key: string]: string } = {
+    "Intelligent Operations": "Intelligent\nOperations",
+    "Creative Systems": "Creative\nSystems",
+    "Training & Adoption": "Training &\nAdoption",
+    "Custom Architecture": "Custom\nArchitecture"
+  };
+  
+  return titleMap[title] || title;
+};
+
 /**
  * Hero Services Grid Component
  * 
@@ -143,7 +156,7 @@ export const HeroServicesGrid: React.FC<HeroServicesGridProps> = ({ services, on
                   <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-black transition-colors"></div>
                 </div>
                 <div className="text-left">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-1 md:mb-2 group-hover:translate-x-1 transition-transform text-left">{service.title}</h3>
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-1 md:mb-2 group-hover:translate-x-1 transition-transform text-left whitespace-pre-line leading-tight">{formatTitleTwoLines(service.title)}</h3>
                   <p className="text-xs md:text-sm text-gray-500 group-hover:translate-x-1 transition-transform delay-75 text-left">{service.subtitle}</p>
                 </div>
               </button>
@@ -284,7 +297,7 @@ const MobileCardWithPeek: React.FC<{
         }
       }}
       aria-label={`View ${service.title} solution`}
-      className="flex-shrink-0 bg-white p-5 md:p-6 rounded-2xl border border-gray-200 shadow-sm min-h-[160px] md:min-h-[180px] flex flex-col justify-between active:scale-[0.98] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 text-left touch-manipulation"
+      className="flex-shrink-0 bg-white p-5 md:p-6 rounded-2xl border border-gray-200 shadow-sm min-h-[200px] md:min-h-[180px] flex flex-col justify-between active:scale-[0.98] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 text-left touch-manipulation"
       style={{
         width: '85vw',
         scrollSnapAlign: 'center',
@@ -299,7 +312,7 @@ const MobileCardWithPeek: React.FC<{
         <div className="w-1.5 h-1.5 rounded-full bg-gray-200"></div>
       </div>
       <div className="text-left">
-        <h3 className="text-lg font-bold mb-1 text-left">{service.title}</h3>
+        <h3 className="text-lg font-bold mb-1 text-left whitespace-pre-line leading-tight">{formatTitleTwoLines(service.title)}</h3>
         <p className="text-xs text-gray-500 text-left">{service.subtitle}</p>
       </div>
     </button>

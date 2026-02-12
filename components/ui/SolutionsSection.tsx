@@ -559,7 +559,7 @@ const CardWithPeekEffect: React.FC<{
   index: number;
   service: Service;
   serviceCount: number;
-  scrollContainerRef: React.RefObject<HTMLDivElement>;
+  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
 }> = ({ index, service, serviceCount, scrollContainerRef }) => {
   const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(1);
@@ -592,7 +592,7 @@ const CardWithPeekEffect: React.FC<{
       }
       
       // Get actual card element position relative to viewport
-      const cardRect = cardRef.current.getBoundingClientRect();
+      const cardRect = cardRef.current!.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
       const viewportCenter = window.innerWidth / 2;
       const cardCenter = cardRect.left + (cardRect.width / 2);

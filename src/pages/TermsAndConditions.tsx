@@ -1,11 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { SiteFooter } from '@/components/ui/SiteFooter';
 
 const TermsAndConditions: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#EAEAEA] text-[#0A0A0A] font-sans">
+      {/* Sticky Back Home pill - desktop only */}
+      <Link
+        to="/"
+        className="hidden lg:flex fixed top-8 right-8 z-50 items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium shadow-lg hover:opacity-90 transition-opacity"
+      >
+        <ArrowLeft size={16} />
+        Back Home
+      </Link>
+
       {/* Header */}
       <header className="py-8 md:py-12 px-6 md:px-12 lg:px-20">
         <div className="max-w-[1400px] mx-auto">
@@ -73,7 +83,7 @@ const TermsAndConditions: React.FC = () => {
           <h2>11. Contact Us</h2>
           <p>In order to resolve a complaint regarding the Site or our Services, or to receive further information regarding use of the Site, please contact us at:</p>
           <p><strong>Filtroo Oü</strong><br />Tööstuse tn 48, 10416<br />Põhja-Tallinna linnaosa, Tallinn<br />Estonia</p>
-          <p>Email: [Insert Contact Email Address]</p>
+          
         </div>
       </main>
 

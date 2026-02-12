@@ -235,7 +235,7 @@ const MobileCardWithPeek: React.FC<{
   index: number;
   service: Service;
   activeIndex: number;
-  scrollContainerRef: React.RefObject<HTMLDivElement>;
+  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
   onServiceClick: (serviceId: string) => void;
 }> = ({ index, service, activeIndex, scrollContainerRef, onServiceClick }) => {
   const [opacity, setOpacity] = useState(1);
@@ -248,7 +248,7 @@ const MobileCardWithPeek: React.FC<{
 
     const updateStyle = () => {
       // Get actual card element position relative to viewport
-      const cardRect = cardRef.current.getBoundingClientRect();
+      const cardRect = cardRef.current!.getBoundingClientRect();
       const viewportCenter = window.innerWidth / 2;
       const cardCenter = cardRect.left + (cardRect.width / 2);
       const distanceFromCenter = Math.abs(cardCenter - viewportCenter);
